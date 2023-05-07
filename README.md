@@ -12,14 +12,20 @@
 """
 optional arguments:
   -h, --help            show this help message and exit
+  
   -f FILENAME, --filename FILENAME
                         input file name
   -c {gray,rgb}, --channels {gray,rgb}
                         convert image to grayscale or RGB
-  -n {gaussian,salt-and-pepper,poisson,exponential}, --noise {gaussian,salt-and-pepper,poisson,exponential}
+
+  -n {gaussian,salt-and-pepper,poisson,exponential}, 
+  --noise {gaussian,salt-and-pepper,poisson,exponential}
                         mask Gaussian, salt-and-pepper, Poisson or exponential noise
-  -l {running-time,compare,hyper-grid,hyper-step,hyper-diam,attack}, --lab {running-time,compare,hyper-grid,hyper-step,hyper-diam,attack}
+                        
+  -l {running-time,compare,hyper-grid,hyper-step,hyper-diam,attack}, 
+  --lab {running-time,compare,hyper-grid,hyper-step,hyper-diam,attack}
                         decide which experiment to run
+                        
   -s SIZE, --size SIZE  set image size
 """
 ```
