@@ -62,3 +62,5 @@ python main.py --filename 1.jpg -n gaussian --lab hyper-step --size 100
 - 需要解决如何添加噪声、如何度量图像质量等等、图像旋转角度、颜色空间的变化
 - 二维的维纳滤波器怎么实现
 - 如何使用傅里叶变化嵌入水印，如何实现傅里叶变化
+
+更新测试
