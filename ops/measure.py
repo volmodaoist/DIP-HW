@@ -1,6 +1,8 @@
-from utils import *
-from noise_maker import *
-from noise_filter import *
+from ops.config import *
+from ops.utils import *
+
+from noisy_processing.noise_maker import *
+from noisy_processing.noise_filter import *
 
 def ssim(image1, image2):
     # 使用numpy实现ssim
@@ -10,11 +12,10 @@ def ssim(image1, image2):
     sigma2 = np.var(image2)
     sigma12 = np.cov(image1.flatten(), image2.flatten())[0][1]
     k1, k2, L = 0.01, 0.03, 255
-    C1 = (k1 * L) ** 2
-    C2 = (k2 * L) ** 2
-    C3 = C2 / 2
+    C1, C2 = (k1 * L) ** 2, (k2 * L) ** 2
     l12 = (2 * mu1 * mu2 + C1) / (mu1 ** 2 + mu2 ** 2 + C1)
     c12 = (2 * np.sqrt(sigma1) * np.sqrt(sigma2) + C2) / (sigma1 + sigma2 + C2)
+    C3 = C2 / 2
     s12 = (sigma12 + C3) / (np.sqrt(sigma1) * np.sqrt(sigma2) + C3)
     return l12 * c12 * s12
     

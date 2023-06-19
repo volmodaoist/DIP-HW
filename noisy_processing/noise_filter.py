@@ -1,7 +1,18 @@
-from utils import *
+import os, sys
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.abspath(os.path.join(current_dir, "../")))
+sys.path.append(os.path.abspath(os.path.join(current_dir, "../../")))
 
-# 程序运行时间: 29.69884419441223s
+from noisy_processing.noise_maker import *
+
+from ops.utils import *
+from ops.config import *
+
+
+
+# 双边滤波基础版，程序运行时间: 29.69884419441223s
 def bilateral_filter_v1(image, radius, sigma_color, sigma_space):
+    image = image.astype(float)
     if len(image.shape) == 2:
         image = image[:, :, np.newaxis]
     H, W, C = image.shape
@@ -25,11 +36,12 @@ def bilateral_filter_v1(image, radius, sigma_color, sigma_space):
                 
                 value = pixel_sum / weight_sum
                 output_image[i][j][k] = value                               # 归一化后的像素值
-    return output_image.astype(np.uint8)
+    return output_image.astype(np.uint16)
 
 
-# 程序运行时间: 3.4048819541931152s
+# 双边滤波向量版，程序运行时间: 3.4048819541931152s
 def bilateral_filter_v2(image, radius, sigma_color, sigma_space, step = 1):
+    image = image.astype(float)
     if len(image.shape) == 2:
         image = image[:, :, np.newaxis]
     H, W, C = image.shape
@@ -49,4 +61,35 @@ def bilateral_filter_v2(image, radius, sigma_color, sigma_space, step = 1):
                 pixel_sum = (weights * image_kernel).sum()
                 value = pixel_sum / weights_sum
                 output_image[i][j][k] = value
-    return output_image.astype(np.uint8)
+    return output_image.astype(np.uint16)
+
+
+# 此为单元测试，运行下面的代码将会看到滤波的效果，并且给出两版双边滤波的效率对比
+# python ./noisy_processing/noise_filter.py --input-image 1.jpg --size 224 --noise 1000 --radius 3 --sigma-color 10 --sigma-space 10
+if __name__ == "__main__":
+    args = parser.parse_args()
+    img = read_image(args.input_image, resize_shape = args.size)
+    noisy_img = masking_noise(img, noise_mask = args.noise)
+    filtered_img = bilateral_filter_v2(image = noisy_img, 
+                                     radius = args.radius, 
+                                     sigma_color = args.sigma_color, 
+                                     sigma_space = args.sigma_space)
+    
+    plt.figure(figsize = (4, 6))
+    plt.subplot(131)
+    plt.title("Original")
+    plt.imshow(img, aspect = 'equal')
+    plt.axis('off')
+    plt.subplot(132)
+    plt.title("Noisy")
+    plt.imshow(noisy_img, aspect = 'equal')
+    plt.axis('off')
+    plt.subplot(133)
+    plt.title("Filtered")
+    plt.imshow(filtered_img, aspect = 'equal')
+    plt.axis('off')
+    plt.savefig("tmp.png")
+    plt.show()
+
+    
+
