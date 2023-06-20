@@ -1,8 +1,8 @@
 from ops.config import *
 from ops.utils import *
 
-from noisy_processing.noise_maker import *
-from noisy_processing.noise_filter import *
+from processing.noise_maker import *
+from processing.noise_filter import *
 
 def ssim(image1, image2):
     # 使用numpy实现ssim

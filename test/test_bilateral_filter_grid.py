@@ -4,8 +4,8 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.abspath(os.path.join(current_dir, "../")))
 sys.path.append(os.path.abspath(os.path.join(current_dir, "../../")))
 
-from noisy_processing.noise_maker import *
-from noisy_processing.noise_filter import *
+from processing.noise_maker import *
+from processing.noise_filter import *
 
 
 from ops.utils import *
@@ -29,9 +29,8 @@ def lab_bilateral_filter_grid(image, noisy_img, sigma_colors, sigma_spaces):
             nmi_list.append(nmi(image, filtered_img))
             cs_list.append(cs(image, filtered_img))
             mse_list.append(mse(image, filtered_img))
-    plt.savefig("tmp.png")
-    plt.show()
     df = pd.DataFrame({'sigma_color': sigma_colors * len(sigma_spaces), 'sigma_space': sigma_spaces * len(sigma_colors), 'ssim': ssim_list, 'nmi': nmi_list, 'cs': cs_list, 'mse': mse_list})
+    plt.savefig("tmp.png")
     print(df)
 
 

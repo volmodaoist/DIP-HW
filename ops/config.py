@@ -6,29 +6,39 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 
 
-# ´´½¨Ò»¸öÓÃÓÚ½ÓÊÕÃüÁîĞĞ²ÎÊı¶ÔÏó
+# åˆ›å»ºä¸€ä¸ªç”¨äºæ¥æ”¶å‘½ä»¤è¡Œå‚æ•°å¯¹è±¡
 parser = argparse.ArgumentParser()
 
-# ÊäÈëÍ¼ÏñµÄÂ·¾¶
+# è¾“å…¥å›¾åƒçš„è·¯å¾„
 parser.add_argument('--input-image', type = str, 
             help = 'Accept the path of the input image')
 
-# Ö±½ÓÉèÖÃÍ¨µÀ¸öÊı£¬Ä¬ÈÏÍ¨µÀ¸öÊı 3£¬Èç¹û¶ÁÈëÍ¼Ïñ
+# ç›´æ¥è®¾ç½®é€šé“ä¸ªæ•°ï¼Œé»˜è®¤é€šé“ä¸ªæ•° 3ï¼Œå¦‚æœè¯»å…¥å›¾åƒ
 parser.add_argument('-c', '--channels',  type = int, default = 3, 
             help = 'Convert an image to grayscale or RGB')
 
-# ËÄÖÖÔëÉùµÄÌí¼Ó£¬Ê¹ÓÃ 0000-1111 ±àÂëÉè¼Æ£¬ËÄ¸öÎ»ÖÃ·Ö±ğ¶ÔÓ¦ËÄÖÖÔëÉù [¸ßË¹ÔëÉù, ½·ÑÎÔëÉù, ²´ËÉÔëÉù, Ö¸ÊıÔëÉù]
+# å››ç§å™ªå£°çš„æ·»åŠ ï¼Œä½¿ç”¨ 0000-1111 ç¼–ç è®¾è®¡ï¼Œå››ä¸ªä½ç½®åˆ†åˆ«å¯¹åº”å››ç§å™ªå£° [é«˜æ–¯å™ªå£°, æ¤’ç›å™ªå£°, æ³Šæ¾å™ªå£°, æŒ‡æ•°å™ªå£°]
 parser.add_argument('-ns', '--noise',  type = str, default = '0000',
             help = 'Accept a mask represent four type of noise (gaussian, salt-and-pepper, Poisson or exponential noise). ')
 
-# µ÷ÕûÊäÈëÍ¼ÏñµÄ³ß´ç´óĞ¡
+# è°ƒæ•´è¾“å…¥å›¾åƒçš„å°ºå¯¸å¤§å°
 parser.add_argument('-s', "--size", type = int, default = 224,
             help = 'Resize the input size of input image.')
 
-# ÏÂÃæÊÇË«±ßÂË²¨Æ÷µÄ²ÎÊı£¬ÒÔÏÂ²ÎÊıÆäÊµÒ²ÓĞÒ»²¿·ÖÄÜ¹»·º»¯ÓÃÓÚÒ»°ãÂË²¨Æ÷£¬ i.e.×÷ÎªÍ¨ÓÃĞÔ²ÎÊı
+# ä¸‹é¢æ˜¯åŒè¾¹æ»¤æ³¢å™¨çš„å‚æ•°ï¼Œä»¥ä¸‹å‚æ•°å…¶å®ä¹Ÿæœ‰ä¸€éƒ¨åˆ†èƒ½å¤Ÿæ³›åŒ–ç”¨äºä¸€èˆ¬æ»¤æ³¢å™¨ï¼Œ i.e.ä½œä¸ºé€šç”¨æ€§å‚æ•°
 parser.add_argument("--radius", type = int, default = 3, 
             help = 'Specified the kernel radius of the filter') 
 parser.add_argument("--sigma-color", type = int, default = 10,
             help = 'Specified the sigma-color of the bilateral kernel')
 parser.add_argument("--sigma-space", type = int, default = 10,
             help = 'Specified the sigma-space of the bilateral kernel')
+
+# ä¸‹é¢æ˜¯å›¾åƒå˜åŒ–ç®—æ³•çš„å‚æ•°ï¼ŒåŒ…æ‹¬äº†æ—‹è½¬çš„è§’åº¦ã€çºµæ¨ªæ–¹å‘å¹³ç§»çš„è·ç¦»ã€ä»¥åŠç¼©æ”¾æ¯”ç‡
+parser.add_argument('--theta', type = int, default = 0,
+            help = 'Specified the angle of the rotation')
+parser.add_argument('--tx', type = int, default = 0,
+            help = 'Specified the translation distance along the x-axis')
+parser.add_argument('--ty', type = int, default = 0,
+            help = 'Specified the translation distance along the y-axis')
+parser.add_argument('--scale', type = float, default = 1,
+            help = 'Specified the scale of the image')
