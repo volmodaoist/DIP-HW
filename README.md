@@ -79,8 +79,3 @@ python ./test/test_space_TSR.py\
 python ./test/test_space_TSR.py\
         --input-image 3.jpg --size 224 --noise 1000 --theta 30  --scale 0.8 --tx 30 --ty 30
 ```
-
-接下来我们需要明确的事情
-- 颜色空间的变化
-- 二维的维纳滤波器怎么实现
-- 如何使用傅里叶变化嵌入水印，如何实现傅里叶变化
