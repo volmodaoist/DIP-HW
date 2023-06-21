@@ -17,7 +17,8 @@ optional arguments:
                         Convert an image to grayscale or RGB
   
   -ns NOISE, --noise NOISE
-                        Accept a mask represent four type of noise (gaussian, salt-and-pepper, Poisson or exponential noise).
+                        Accept a mask represent four type of noise 
+                        (gaussian, salt-and-pepper, Poisson or exponential noise).
   
   -s SIZE, --size SIZE  
                         Resize the input size of input image.
@@ -67,16 +68,19 @@ python ./test/test_bilateral_filter_radius.py --input-image 1.jpg  --size 224  -
 **命令行执行下列命令即可查看不同变化效果混合使用的效果**
 ```shell
 # 旋转与缩放混合使用
-python ./test/test_space_TSR.py --input-image 3.jpg --size 224 --noise 1000 --theta 5   --scale 0.8
+python ./test/test_space_TSR.py\
+      --input-image 3.jpg --size 224 --noise 1000 --theta 5   --scale 0.8
 
 # 旋转、平移混合使用
-python ./test/test_space_TSR.py --input-image 3.jpg --size 224 --noise 1000 --theta 30  --tx 30 --ty 30
+python ./test/test_space_TSR.py\ 
+      --input-image 3.jpg --size 224 --noise 1000 --theta 30  --tx 30 --ty 30
 
 # 旋转、缩放、平移，三者混合使用
-python ./test/test_space_TSR.py --input-image 3.jpg --size 224 --noise 1000 --theta 30  --scale 0.8 --tx 30 --ty 30
+python ./test/test_space_TSR.py\
+        --input-image 3.jpg --size 224 --noise 1000 --theta 30  --scale 0.8 --tx 30 --ty 30
 ```
 
 接下来我们需要明确的事情
-- 需要解决如何添加噪声、如何度量图像质量等等、图像旋转角度、颜色空间的变化
+- 颜色空间的变化
 - 二维的维纳滤波器怎么实现
 - 如何使用傅里叶变化嵌入水印，如何实现傅里叶变化
