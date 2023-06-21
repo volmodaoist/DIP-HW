@@ -32,6 +32,8 @@ parser.add_argument("--sigma-color", type = int, default = 10,
             help = 'Specified the sigma-color of the bilateral kernel')
 parser.add_argument("--sigma-space", type = int, default = 10,
             help = 'Specified the sigma-space of the bilateral kernel')
+parser.add_argument("--step", type = int, default = 1,
+            help = "Specified the step of the bilateral kernel")
 
 # 下面是图像变化算法的参数，包括了旋转的角度、纵横方向平移的距离、以及缩放比率
 parser.add_argument('--theta', type = int, default = 0,
