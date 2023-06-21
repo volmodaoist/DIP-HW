@@ -1,37 +1,28 @@
 # 数字图像处理作业，代码开源
 
 稍稍纪念一下本次图像处理的作业，本次作业是按照平时搭建科研流水线的方法来写的，
+
 同时也由衷希望能将数字图像处理之中学到的一些方法，以及获取的一些灵感，用在网络模型鲁棒性提升上面...
 
 
 # 使用方法
 运行 `python main.py -h` 查看命令帮助，本项目的所有探究性实验全部移放 `./test` 以便管理，
+
 不过需要注意📢，运行这个项目代码需要确保当前目录位于 main.py 所在的目录，要在这个目录同级之下运行下文提到的命令
 
-```shell
+```
 optional arguments:
-  --input-image INPUT_IMAGE
-                        Accept the path of the input image
-  
-  -c CHANNELS, --channels CHANNELS
-                        Convert an image to grayscale or RGB
-  
-  -ns NOISE, --noise NOISE
-                        Accept a mask represent four type of noise 
-                        (gaussian, salt-and-pepper, Poisson or exponential noise).
-  
-  -s SIZE, --size SIZE  
-                        Resize the input size of input image.
-  
-  --radius RADIUS       
-                        Specified the kernel radius of the filter
-  
-  --sigma-color SIGMA_COLOR
-                        Specified the sigma-color of the bilateral kernel
-  
-  --sigma-space SIGMA_SPACE
-                        Specified the sigma-space of the bilateral kernel
+  --input-image INPUT_IMAGE            Accept the path of the input image
+  -c CHANNELS, --channels CHANNELS     Convert an image to grayscale or RGB
+  -ns NOISE, --noise NOISE             Accept a mask represent four type of noise 
+                                       (gaussian, salt-and-pepper, Poisson or exponential noise).
+
+  -s SIZE, --size SIZE                Resize the input size of input image.
+  --radius RADIUS                     Specified the kernel radius of the filter
+  --sigma-color SIGMA_COLOR           Specified the sigma-color of the bilateral kernel
+  --sigma-space SIGMA_SPACE           Specified the sigma-space of the bilateral kernel
   ...
+  更多命令可以使用 python main.py -h 查看
 ```
 
 
